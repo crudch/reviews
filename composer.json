@@ -1,0 +1,33 @@
+{
+  "name": "swing/swing-kiska",
+  "license": "MIT",
+  "description": "Application swing-kiska",
+  "require": {
+    "php": "^7.4",
+    "ext-pdo": "*",
+    "ext-dom": "*",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "ext-ctype": "*",
+    "ext-openssl": "*",
+    "ext-mbstring": "*",
+    "ext-memcached": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/",
+      "System\\": "system/"
+    },
+    "files": [
+      "system/Helpers/functions.php",
+      "app/Support/functions.php"
+    ]
+  },
+  "config": {
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "optimize-autoloader": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
