@@ -11,7 +11,11 @@
     "ext-ctype": "*",
     "ext-openssl": "*",
     "ext-mbstring": "*",
-    "ext-memcached": "*"
+    "ext-memcached": "*",
+    "cocur/slugify": "^4.0",
+    "amstaffix/pagination": "^1.1",
+    "claviska/simpleimage": "^3.3",
+    "mobiledetect/mobiledetectlib": "^2.8"
   },
   "autoload": {
     "psr-4": {
