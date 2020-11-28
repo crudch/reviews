@@ -6,6 +6,7 @@ use Closure;
 use Throwable;
 use ReflectionClass;
 use ReflectionParameter;
+use ReflectionNamedType;
 
 /**
  * Simple container
@@ -20,14 +21,14 @@ class Container
      *
      * @var array
      */
-    protected static $definitions = [];
+    protected static array $definitions = [];
 
     /**
      * Collection of stored instances
      *
      * @var array
      */
-    protected static $registry = [];
+    protected static array $registry = [];
 
     /**
      * Resolve a service instance from the container.
@@ -78,7 +79,7 @@ class Container
      * @return bool|object
      * @throws Throwable
      */
-    protected static function autoResolve($name)
+    protected static function autoResolve(string $name)
     {
         if (!class_exists($name)) {
             throw new ContainerException("Unknown service [ {$name} ]");
@@ -97,12 +98,14 @@ class Container
         try {
             $args = array_map(
                 static function (ReflectionParameter $param) {
-                    if (null !== $arg = $param->getClass()) {
-                        return static::get($arg->getName());
+
+                    if (($type = $param->getType()) && $type instanceof ReflectionNamedType && !$type->isBuiltin()) {
+                        return static::get($type->getName());
                     }
 
                     return $param->isDefaultValueAvailable() ? $param->getDefaultValue() : null;
                 },
+
                 $constructor->getParameters()
             );
         } catch (Throwable $e) {

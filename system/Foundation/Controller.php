@@ -27,11 +27,11 @@ abstract class Controller
         $method = new ReflectionMethod($this, $action);
 
         $args = array_map(static function (ReflectionParameter $param) use ($request) {
-            if (null === $arg = $param->getClass()) {
-                return $request->input($param->getName());
+            if (($type = $param->getType()) && $type instanceof \ReflectionNamedType && !$type->isBuiltin()) {
+                return App::get($type->getName());
             }
 
-            return App::get($arg->getName());
+            return $request->get($param->name);
         }, $method->getParameters());
 
         return $method->invokeArgs($this, $args);
