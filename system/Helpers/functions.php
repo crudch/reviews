@@ -432,6 +432,8 @@ function compress(string $string): string
  * @param int $number
  * @param string $words [1|2|0] - [год|года|лет]
  *
+ * @noinspection NestedTernaryOperatorInspection
+ *
  * @return string
  */
 function plural(int $number, string $words): string
@@ -442,7 +444,6 @@ function plural(int $number, string $words): string
         return '';
     }
 
-    /** @noinspection NestedTernaryOperatorInspection */
     return $tmp[(($number % 10 === 1) && ($number % 100 !== 11)) ? 0 :
         ((($number % 10 >= 2) && ($number % 10 <= 4) && (($number % 100 < 10) || ($number % 100 >= 20))) ? 1 : 2)];
 }
