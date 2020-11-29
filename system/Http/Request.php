@@ -16,32 +16,32 @@ class Request
     /**
      * @var array
      */
-    protected $get;
+    protected array $get;
 
     /**
      * @var array
      */
-    protected $post;
+    protected array $post;
 
     /**
      * @var array
      */
-    protected $files;
+    protected array $files;
 
     /**
      * @var array
      */
-    protected $cookie;
+    protected array $cookie;
 
     /**
-     * @var array
+     * @var array|null
      */
-    protected $all;
+    protected ?array $all = null;
 
     /**
-     * @var array
+     * @var array|null
      */
-    protected $headers;
+    protected ?array $headers = null;
 
     public function __construct()
     {
@@ -67,7 +67,7 @@ class Request
      *
      * @return array|string|null
      */
-    protected function getData(&$data, $params)
+    protected function getData($data, $params)
     {
         if (null === $params) {
             return $data;
@@ -181,7 +181,7 @@ class Request
      *
      * @return bool
      */
-    public function hasFile($filename): bool
+    public function hasFile(string $filename): bool
     {
         return !empty($this->files[$filename]) && UPLOAD_ERR_NO_FILE !== $this->files[$filename]['error'];
     }
@@ -191,7 +191,7 @@ class Request
      *
      * @return array|null
      */
-    public function file($filename): ?array
+    public function file(string $filename): ?array
     {
         return $this->files[$filename] ?? null;
     }
@@ -335,7 +335,7 @@ class Request
      *
      * @return bool
      */
-    public function has($name): bool
+    public function has(string $name): bool
     {
         return array_key_exists($name, $this->all());
     }

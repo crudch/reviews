@@ -133,7 +133,7 @@ function abort(int $code = 404, ?string $message = null)
  *
  * @return string
  */
-function render($name, array $params = [])
+function render(string $name, array $params = [])
 {
     return (new View(root_path('/templates')))
         ->render($name, $params);
@@ -145,7 +145,7 @@ function render($name, array $params = [])
  *
  * @return Response
  */
-function view($name, array $params = [])
+function view(string $name, array $params = [])
 {
     return (new Response())
         ->setData(render($name, $params));
@@ -173,11 +173,11 @@ function old(string $name, $default = null)
 /**
  * Экранирует теги
  *
- * @param string $string
+ * @param string|null $string $string
  *
  * @return string
  */
-function e($string): string
+function e(?string $string): string
 {
     return htmlspecialchars($string, ENT_QUOTES | ENT_SUBSTITUTE);
 }
