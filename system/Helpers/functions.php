@@ -46,7 +46,7 @@ function root_path(?string $path = null): string
 {
     static $root;
 
-    return ($root ?: $root = app('root_path')) . $path;
+    return ($root ??= app('root_path')) . $path;
 }
 
 /**
@@ -255,7 +255,7 @@ function absUrl(string $url): string
 {
     static $full_url;
 
-    return ($full_url ?: $full_url = config('url')) . '/' . trim($url, '/');
+    return ($full_url ??= config('url')) . '/' . trim($url, '/');
 }
 
 /**
@@ -267,7 +267,7 @@ function isLocal(): bool
 {
     static $env;
 
-    return $env ?? $env = 'local' === config('env');
+    return $env ??= 'local' === config('env');
 }
 
 
