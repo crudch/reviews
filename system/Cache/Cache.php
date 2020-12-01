@@ -11,7 +11,7 @@ use System\Cache\Interfaces\CacheDriverInterface;
  */
 class Cache
 {
-    protected $driver;
+    protected CacheDriverInterface $driver;
 
     /**
      * Cache constructor.

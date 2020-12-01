@@ -11,7 +11,7 @@ use System\Cache\Interfaces\CacheDriverInterface;
  */
 class FileDriver implements CacheDriverInterface
 {
-    protected $path;
+    protected string $path;
 
     /**
      * FileDriver constructor.

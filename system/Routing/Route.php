@@ -12,22 +12,22 @@ class Route
     /**
      * @var string
      */
-    protected $handler;
+    protected string $handler;
 
     /**
      * @var string
      */
-    protected $pattern;
+    protected string $pattern;
 
     /**
-     * @var $string
+     * @var string
      */
-    protected $name;
+    protected string $name;
 
     /**
      * @var array;
      */
-    protected $middleware = [];
+    protected array $middleware = [];
 
     /**
      * Route constructor.

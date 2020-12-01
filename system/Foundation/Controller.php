@@ -7,6 +7,7 @@ use System\App;
 use ReflectionMethod;
 use ReflectionParameter;
 use System\Http\Request;
+use ReflectionNamedType;
 
 /**
  * Class Controller
@@ -27,7 +28,7 @@ abstract class Controller
         $method = new ReflectionMethod($this, $action);
 
         $args = array_map(static function (ReflectionParameter $param) use ($request) {
-            if (($type = $param->getType()) && $type instanceof \ReflectionNamedType && !$type->isBuiltin()) {
+            if (($type = $param->getType()) && $type instanceof ReflectionNamedType && !$type->isBuiltin()) {
                 return App::get($type->getName());
             }
 

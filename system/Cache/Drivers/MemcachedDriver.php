@@ -15,7 +15,7 @@ class MemcachedDriver implements CacheDriverInterface
     /**
      * @var Memcached
      */
-    protected $memcached;
+    protected Memcached $memcached;
 
     /**
      * MemcachedDriver constructor.

@@ -3,7 +3,8 @@
 namespace System\Database;
 
 use PDO;
-use System\Date\SwDate;
+use Exception;
+use System\Date\Date;
 
 use function is_array;
 
@@ -198,13 +199,25 @@ trait ActiveRecord
         return (int)$value;
     }
 
-    public function setCreatedAt($value): SwDate
+    /**
+     * @param $value
+     *
+     * @return Date
+     * @throws Exception
+     */
+    public function setCreatedAt($value): Date
     {
-        return swDate($value);
+        return rwDate($value);
     }
 
-    public function setUpdatedAt($value): SwDate
+    /**
+     * @param $value
+     *
+     * @return Date
+     * @throws Exception
+     */
+    public function setUpdatedAt($value): Date
     {
-        return swDate($value);
+        return rwDate($value);
     }
 }

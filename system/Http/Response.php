@@ -14,6 +14,9 @@ use function is_array;
  */
 class Response
 {
+    /**
+     * @var mixed
+     */
     protected $data;
 
     /**
@@ -34,7 +37,7 @@ class Response
      *
      * @return Response
      */
-    public function redirect($url, $code = 302): Response
+    public function redirect(string $url, $code = 302): Response
     {
         $this->setHeader('Location: ' . $url, $code);
 
@@ -137,7 +140,7 @@ class Response
      *
      * @return Response
      */
-    public function withCode($code): Response
+    public function withCode(int $code): Response
     {
         http_response_code($code);
 
@@ -151,7 +154,7 @@ class Response
      * @param null $code
      * @param bool $replace
      */
-    protected function setHeader($header, $code = null, $replace = true): void
+    protected function setHeader(string $header, $code = null, $replace = true): void
     {
         header($header, $replace, $code);
     }

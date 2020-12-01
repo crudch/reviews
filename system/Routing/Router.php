@@ -14,20 +14,20 @@ class Router
     /**
      * @var Route[]
      */
-    protected $routes = [
+    protected array $routes = [
         'GET'  => [],
         'POST' => [],
     ];
 
     /**
-     * @var string
+     * @var string|null
      */
-    protected $prefix;
+    protected ?string $prefix;
 
     /**
      * @var array
      */
-    protected $middleware = [];
+    protected array $middleware = [];
 
     /**
      * @param string $path
