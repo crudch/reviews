@@ -22,7 +22,7 @@ class Router
     /**
      * @var string|null
      */
-    protected ?string $prefix;
+    protected ?string $prefix = null;
 
     /**
      * @var array
