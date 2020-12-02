@@ -21,6 +21,7 @@ class RequestTest extends TestCase
         $_SERVER['REQUEST_METHOD'] = 'POST';
         $_SERVER['HTTP_X_REQUESTED_WITH'] = 'XMLHttpRequest';
         $_SERVER['REMOTE_ADDR'] = '192.30.253.113';
+        $_FILES = ['bar' => ['error' => 0]];
         $this->request = new Request();
     }
 
@@ -142,5 +143,7 @@ class RequestTest extends TestCase
     {
         self::assertFalse($this->request->hasFile('foo'));
         self::assertNull($this->request->file('foo'));
+        self::assertTrue($this->request->hasFile('bar'));
+        self::assertEquals(['error' => 0], $this->request->file('bar'));
     }
 }
