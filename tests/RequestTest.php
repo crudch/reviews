@@ -137,4 +137,10 @@ class RequestTest extends TestCase
         $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
         self::assertEquals(0, $this->request->clientIp2long());
     }
+    
+    public function testFile()
+    {
+        self::assertFalse($this->request->hasFile('foo'));
+        self::assertNull($this->request->file('foo'));
+    }
 }
