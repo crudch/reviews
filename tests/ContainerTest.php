@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Container;
+namespace Tests;
 
 use StdClass;
 use System\Container\Container;

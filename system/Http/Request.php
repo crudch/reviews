@@ -62,12 +62,12 @@ class Request
     }
 
     /**
-     * @param $data
-     * @param $params
+     * @param array $data [GET, POST, COOKIE]
+     * @param mixed $params [void, string, array]
      *
      * @return array|string|null
      */
-    protected function getData($data, $params)
+    protected function getData(array $data, $params)
     {
         if (null === $params) {
             return $data;
@@ -119,24 +119,12 @@ class Request
     }
 
     /**
-     * @param array|string $params
-     *
-     * @return array
-     * @deprecated тоже самое, что и get(),post(), input()
-     *
-     */
-    public function only($params): array
-    {
-        return array_intersect_key($this->all(), array_flip((array)$params));
-    }
-
-    /**
      * @return array
      */
     public function all(): array
     {
         if (null === $this->all) {
-            $this->all = array_merge($this->post(), $this->get());
+            $this->all = array_merge($this->get(), $this->post());
         }
 
         return $this->all;

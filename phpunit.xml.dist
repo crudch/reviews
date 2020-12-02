@@ -21,7 +21,7 @@
 
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./system</directory>
+            <directory suffix=".php">./system/Http</directory>
         </whitelist>
     </filter>
 
