@@ -16,6 +16,7 @@ class RequestTest extends TestCase
     {
         $_GET = ['test' => 'get', 'int' => '1'];
         $_POST = ['test' => 'post', 'int' => '1'];
+        $_COOKIE = ['foo' => 'bar'];
         $_SERVER['REQUEST_URI'] = '/index/page?g=1&test2';
         $_SERVER['REQUEST_METHOD'] = 'POST';
         $_SERVER['HTTP_X_REQUESTED_WITH'] = 'XMLHttpRequest';
@@ -62,7 +63,7 @@ class RequestTest extends TestCase
         self::assertEquals('test', $this->request->foo);
     }
 
-    public function testIsset()
+    public function testSet()
     {
         $this->request->setAttributes('book','123');
         self::assertEquals('123', $this->request->book);
@@ -72,7 +73,8 @@ class RequestTest extends TestCase
     {
         $this->request->deleteAttribute('test');
         self::assertEquals(null, $this->request->input('test'));
-
+        $this->request->deleteAttribute('int', ['get', 'post']);
+        self::assertEquals([], $this->request->input());
     }
 
     public function testSetAttributes()
@@ -85,6 +87,26 @@ class RequestTest extends TestCase
         ]);
 
         self::assertSame(['test' => 'get', 'int' => '1', 'id' => 2, 'name' => 'Vasya'], $this->request->get());
+    }
+
+    public function testIsset()
+    {
+        self::assertTrue(isset($this->request->test));
+        self::assertFalse(isset($this->request->f));
+    }
+
+    public function testCookie()
+    {
+        self::assertEquals('bar', $this->request->cookie('foo'));
+        self::assertEquals(['foo' => 'bar'], $this->request->cookie(['foo']));
+    }
+
+    public function testHeaders()
+    {
+        self::assertEquals('XMLHttpRequest', $this->request->headers('X_REQUESTED_WITH'));
+        self::assertEquals('XMLHttpRequest', $this->request->headers('X-REQUESTED-WITH'));
+        self::assertEquals('XMLHttpRequest', $this->request->headers('x-requested-with'));
+        self::assertNull($this->request->headers('fix'));
     }
 
     public function testUri()
