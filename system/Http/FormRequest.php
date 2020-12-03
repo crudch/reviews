@@ -20,12 +20,12 @@ abstract class FormRequest implements IteratorAggregate
     /**
      * @var Request
      */
-    protected $request;
+    protected Request $request;
 
     /**
      * @var MultiException
      */
-    protected $multi;
+    protected MultiException $multi;
 
     /**
      * @var array
@@ -35,7 +35,7 @@ abstract class FormRequest implements IteratorAggregate
     /**
      * @var array
      */
-    protected $validated_fields = [];
+    protected array $validated_fields = [];
 
     /**
      * @return array

@@ -14,22 +14,22 @@ use Throwable;
  */
 class View
 {
-    private $extends;
+    private ?string $extends = null;
 
     /**
      * @var array
      */
-    private $blocks = [];
+    private array $blocks = [];
 
     /**
      * @var SplStack
      */
-    private $blockNames;
+    private SplStack $blockNames;
 
     /**
      * @var string
      */
-    private $path;
+    private string $path;
 
     /**
      * View constructor.
