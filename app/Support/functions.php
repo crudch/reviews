@@ -6,7 +6,7 @@ use App\Models\Users\Auth;
 /**
  * @return Auth
  */
-function auth()
+function auth(): Auth
 {
     return app(Guard::class);
 }
