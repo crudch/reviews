@@ -6,11 +6,11 @@ window.$ = window.jQuery = require('jquery');
 //require('bootstrap');
 
 
-//import UIkit from 'uikit';
-//import Icons from 'uikit/dist/js/uikit-icons';
+import UIkit from 'uikit';
+import Icons from 'uikit/dist/js/uikit-icons';
 
 // loads the Icon plugin
-//UIkit.use(Icons);
+UIkit.use(Icons);
 
-//window.UIkit = UIkit;
+window.UIkit = UIkit;
 
