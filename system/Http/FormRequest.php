@@ -2,6 +2,8 @@
 
 namespace System\Http;
 
+use Throwable;
+use System\App;
 use Traversable;
 use ArrayIterator;
 use IteratorAggregate;
@@ -45,15 +47,13 @@ abstract class FormRequest implements IteratorAggregate
     /**
      * FormRequest constructor.
      *
-     * @param Request $request
-     * @param MultiException $multi
-     *
      * @throws MultiException
+     * @throws Throwable
      */
-    public function __construct(Request $request, MultiException $multi)
+    public function __construct()
     {
-        $this->request = $request;
-        $this->multi = $multi;
+        $this->request = App::get(Request::class);
+        $this->multi = new MultiException();
         $this->process();
     }
 

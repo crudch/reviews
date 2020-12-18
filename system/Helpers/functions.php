@@ -333,6 +333,16 @@ function limit(string $value, int $limit = 100, string $end = ' ...'): string
 }
 
 /**
+ * @param string|null $string
+ *
+ * @return string
+ */
+function snl2br(?string $string): string
+{
+    return str_replace(["\r\n", "\r", "\n"], '<br>', (string)$string);
+}
+
+/**
  * @param int $bytes
  *
  * @return string
